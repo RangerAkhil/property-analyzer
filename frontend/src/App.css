@@ -1,38 +1,115 @@
-.App {
+:root {
+  --color1: #FF5733;
+  --color2: #33FF77;
+  --color3: #3366FF;
+  --color4: #FF33A3;
+  --color5: #66FF33;
+  --color6: #33FFA3;
+  --color7: #FF3366;
+  --color8: #A333FF;
+  --color9: #33A3FF;
+  --color10: #FF9933;
+}
+
+input[type="date"] {
+  padding: 13px 30px;
+}
+
+.main {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main .date-picker {
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+  margin: 4px;
+  border-bottom: 1px dashed #4CAF50;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.main label {
+  margin-left: 15px;
+  margin-right: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main button {
+  margin-left: 15px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 13px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.data-table {
+  width: 40%;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.mark {
+  padding: 2px;
+  margin-right: 5px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.user-chart {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.user-chart .pie-chart {
+  width: 350px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.user-chart .user-list {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.property-data {
+  display: flex;
+  justify-content: space-around;
+}
+
+.property-data h2 {
+  text-align: center;
+}
+
+.error-toast {
+  text-align: center;
+  color: brown;
+  font-weight: 700;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.loading {
+  text-align: center;
+  color: #66FF33;
+  font-weight: 700;
+  padding: 15px;
+  font-size: 20px;
 }
