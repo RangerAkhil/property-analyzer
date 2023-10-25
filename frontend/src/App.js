@@ -4,9 +4,7 @@ import "./App.css"
 function App() {
   return (
     <div>
-      <div>
-        <DatePicker />         
-      </div>
+      <DatePicker />
     </div>
   );
 }

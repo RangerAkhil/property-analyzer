@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import 'dotenv/config'
 
-mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@property-analyzer.nuxusgz.mongodb.net/${process.env.MONGO_DATABASE_NAME}?retryWrites=true&w=majority`)
+mongoose.connect(process.env.MONGODB_URL)
 const db = mongoose.connection;
 
 db.once('connected', function () {

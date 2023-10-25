@@ -16,19 +16,12 @@ function DatePicker() {
         setErrorState({ status: false, type: null, loading: false });
     };
 
-    const handleDateChange = (date) => {
-        const newDateRange = { ...dateRange };
-        if (!newDateRange.start) {
-            newDateRange.start = date;
-        } else if (!newDateRange.end) {
-            newDateRange.end = date;
-        } else {
-            newDateRange.start = date;
-            newDateRange.end = null;
-        }
-        setDateRange(newDateRange);
+    const handleDateChange = (date, field) => {
+        setDateRange((prevDateRange) => ({
+            ...prevDateRange,
+            [field]: date,
+        }));
     };
-
     const handleSubmit = async () => {
         resetErrorState();
         if (!dateRange.start || !dateRange.end){
@@ -36,9 +29,13 @@ function DatePicker() {
            return;            
         }
         setErrorState({ ...errorState, loading: true })
-        const res = await fetchPropertiesData(dateRange.start, dateRange.end);
-        // eslint-disable-next-line no-unused-expressions
-        res.status === 200 ? (setData(res.data), setErrorState({ status: false, loading: false })) : setErrorState({ status: true, type: 3, loading: false }) ? res.status === 404 : setErrorState({ status: true, type: 4, loading: false });
+        try{
+            const res = await fetchPropertiesData(dateRange.start, dateRange.end);
+            // eslint-disable-next-line no-unused-expressions
+            res.status === 200 ? (setData(res.data), setErrorState({ status: false, loading: false })) : setErrorState({ status: true, type: 3, loading: false }) ? res.status === 404 : setErrorState({ status: true, type: 4, loading: false });
+        }catch(error){
+            setErrorState({ status: true, type: 3, loading: false })
+        }
 
     }
 
@@ -74,7 +71,7 @@ function DatePicker() {
                         <input
                             type="date"
                             value={dateRange.start || ''}
-                            onChange={(e) => handleDateChange(e.target.value)}
+                            onChange={(e) => handleDateChange(e.target.value,'start')}
                         />
                     </div>
                     <div>
@@ -82,7 +79,7 @@ function DatePicker() {
                         <input
                             type="date"
                             value={dateRange.end || ''}
-                            onChange={(e) => handleDateChange(e.target.value)}
+                            onChange={(e) => handleDateChange(e.target.value,'end')}
                         />
                     </div>
                     <div>

@@ -18,7 +18,7 @@ var corsOptions = {
     }
 }
 
-app.use(cors('*'));
+app.use(cors(corsOptions));
 
 const onListeningPort = () => {
     console.log("🚀 Server listening on PORT:", process.env.PORT)

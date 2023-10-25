@@ -1,8 +1,7 @@
-// export const fetchPropertiesData = async ({start = '2023-01-02', end = '2023-12-03'}) => {
-export const fetchPropertiesData = async (start_date, end_date) => { 
-    console.log(`http://localhost:3001/api/date-range?start_date=${start_date}&end_date=${end_date}`);
+export const fetchPropertiesData = async (start_date, end_date) => {     
+    console.log(process.env.REACT_APP_API_URL);
     try {
-        const res = await fetch(`http://localhost:3001/api/date-range?start_date=${start_date}&end_date=${end_date}`);
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/date-range?start_date=${start_date}&end_date=${end_date}`);
         const data = await res.json();
         return data
     } catch (error) {
