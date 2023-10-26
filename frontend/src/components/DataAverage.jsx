@@ -16,18 +16,18 @@ const DataAverage = ({ data }) => {
         <table>
             <tr>
                 <td>Average Time Tracked</td>
-                <td>{averageDuration}</td>
+                 <td>{Number(averageDuration).toFixed(2)}</td>
             </tr><tr>
                 <td>Average property analyzed</td>
-                <td>{averageProperty}</td>
+                 <td>{Number(averageProperty).toFixed(2)}</td>
 
             </tr><tr>
                 <td>Top performing user</td>
-                <td>{users[0].username}</td>
+                 <td>{users[0].username}</td>
             </tr>
             <tr>
                 <td>Total time tracked</td>
-                <td>{totalDuration}</td>
+                 <td>{Number(totalDuration).toFixed(2)}</td>
             </tr>
         </table>
     )

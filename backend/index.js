@@ -46,15 +46,14 @@ app.get("/api/date-range", async (req, res) => {
         if (userTrack) {
             const propertyData = validateProperty(user.user_id);
             if (propertyData) {
-                const { userId, username } = user;
+                
                 const { propertyID, averageDuration } = propertyData;
-                return { userId, username, propertyId: propertyID, companyId: userTrack.companyId, duration: Number(averageDuration).toFixed(2) };
+                return { userId: user.user_id, username: user.username, propertyId: propertyID, companyId: userTrack.companyId, duration: Number(averageDuration).toFixed(2) };
             }
         }
     }).filter(Boolean);
 
-
-    const userPropertyIds = userPropertyData.flatMap(item => item.propertyId);
+     const userPropertyIds = userPropertyData.flatMap(item => item.propertyId);
     const companyIds = [...new Set(userPropertyData.map(item => item.companyId))];
 
     try {
@@ -76,13 +75,14 @@ app.get("/api/date-range", async (req, res) => {
         const companyDataMap = new Map(companyData.map(item => [item.company_id, item]));
 
         const analyzedData = userPropertyData.map(({ userId, username, propertyId, companyId, duration }, i) => {
-            const propertyFilterData = propertyId.map(item => propertyDataMap.get(item)).filter(Boolean)
+            const propertyFilterData = propertyId.flatMap(item => propertyDataMap.get(item)).filter(Boolean)
             const companyFilterData = companyDataMap.get(companyId.toString());
             if (propertyFilterData.length && companyFilterData.company_name) {
                 const finalData = { userId, username, company: companyFilterData.company_name, duration, property: propertyFilterData };
                 return finalData
             }
         }).filter(Boolean);
+ 
         if (analyzedData.length) {
             res.status(200).json({ status: 200, data: analyzedData });
         } else res.status(404).json({ status: 404, error: "No data found" });
