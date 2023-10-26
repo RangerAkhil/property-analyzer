@@ -6,14 +6,17 @@ import Chart from "./PieChart";
 import ErrorToast from "./ErrorToast";
 import Loading from "./Loading";
 
+const initDate = { start: null, end: null };
+const initError = { status: false, loading: false }
 function DatePicker() {
-    const [dateRange, setDateRange] = useState({ start: null, end: null });
-    const [errorState, setErrorState] = useState({ status: false, loading: false })
+    const [dateRange, setDateRange] = useState(initDate);
+    const [errorState, setErrorState] = useState(initError)
     const [data, setData] = useState(null)
     const timeoutRef = useRef(null);
 
     const resetErrorState = () => {
-        setErrorState({ status: false, type: null, loading: false });
+        setErrorState({ ...initError, type: null });
+        setData(null)
     };
 
     const handleDateChange = (date, field) => {

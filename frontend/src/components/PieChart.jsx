@@ -15,7 +15,8 @@ const hexColors = [
 ];
 
 const Chart = ({ data }) => {
-  const pieChartData = data.map((item, i) => { return { title: item.username, value: item.duration, color: hexColors[i] } })
+  const pieChartData = data.map((item, i) => { return { title: item.username, value: Number(item.duration), color: hexColors[i] } })
+ 
   return (
     <div className="user-chart">
       <div className="pie-chart"><PieChart data={pieChartData} /> </div>

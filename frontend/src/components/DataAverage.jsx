@@ -1,9 +1,9 @@
 import React from 'react'
 
 const DataAverage = ({ data }) => {
-    const totalDuration = data.reduce((total, item) => total + item.duration, 0);
+    const totalDuration = data.reduce((total, item) => total + Number(item.duration), 0);
     const totalProperty = data.reduce((total, item) => total + item.property.length, 0);
-
+ 
     const users = data.map((item) => {
         const average = item.duration / item.property.length;
         return { ...item, average }

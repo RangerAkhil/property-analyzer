@@ -14,7 +14,7 @@ const DataTable = ({ data }) => {
           return <tr key={userId}>
             <td>{username}</td>
             <td>{company}</td>
-            <td>{duration}</td>
+            <td>{duration}&nbsp;Hours</td>
             <td>{property.map((item, i) => <p key={i}>{item}</p>)}</td>
           </tr>
         })
